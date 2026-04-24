@@ -23,9 +23,9 @@ printf "     \033[1;93mGETHUB\033[0m: ${GETHUB_VERSION}\n"
 printf " \033[1;93mREPOSITORY\033[0m: ${GETHUB_REPO_NAME}\n\n"
 printf " ${UNICODE_VERTICAL_PIPE} Fetching remote environment ...\n"
 
-wget -qO \
-	"$GETHUB_TMP_ENVIRONMENT_FILE" \
+curl -fLsS \
 	"https://${GETHUB_REPO_HOST}/${GETHUB_REPO_NAME}/${GETHUB_REPO_BRANCH}/${GETHUB_REPO_ENV}" \
+	> "$GETHUB_TMP_EXECUTABLE_FILE" \
 	|| {
 		printf " ${UNICODE_VERTICAL_PIPE} Couldn't find a valid GEThub environment.\n"
 		printf "\n \033[1;31mERR\033[0m\n\n"
@@ -36,9 +36,9 @@ export $(grep '^GETHUB_' "$GETHUB_TMP_ENVIRONMENT_FILE" | xargs)
 
 printf " ${UNICODE_VERTICAL_PIPE} Downloading executable ...\n"
 
-wget -qO \
-	"$GETHUB_TMP_EXECUTABLE_FILE" \
+curl -fLsS \
 	"https://${GETHUB_REPO_HOST}/${GETHUB_REPO_NAME}/${GETHUB_REPO_BRANCH}/${GETHUB_SOURCE_PATH}" \
+	> "$GETHUB_TMP_EXECUTABLE_FILE" \
 	|| {
 		printf " ${UNICODE_VERTICAL_PIPE} Couldn't find the specified source distributable.\n"
 		printf "\n \033[1;31mERR\033[0m\n\n"
