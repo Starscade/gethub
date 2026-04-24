@@ -19,8 +19,8 @@ if test -n "$1"; then
 fi
 
 printf "\n"
-printf "  \033[1;93mGETHUB\033[0m: ${GETHUB_VERSION}\n"
-printf " \033[1;93mPACKAGE\033[0m: ${GETHUB_REPO_NAME}\n\n"
+printf " \033[1;93mGETHUB\033[0m: ${GETHUB_VERSION}\n"
+printf "   \033[1;93mREPO\033[0m: ${GETHUB_REPO_NAME}\n\n"
 printf " ${UNICODE_VERTICAL_PIPE} Fetching remote environment ...\n"
 
 wget -qO \
