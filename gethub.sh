@@ -61,7 +61,7 @@ printf " ${UNICODE_VERTICAL_PIPE} Installing ...\n"
 		exit 1
 	}
 
-chmod +x "${GETHUB_BIN_DIR}/${GETHUB_TARGET_NAME}"
+chmod +x "${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}"
 
 rm "$GETHUB_TMP_EXECUTABLE_FILE" "$GETHUB_TMP_ENVIRONMENT_FILE" \
 	|| printf " ${UNICODE_VERTICAL_PIPE} Failed to purge temporary files. Perhaps they were already removed?\n"
