@@ -53,6 +53,6 @@ cp "$GETHUB_TMP_EXECUTABLE_FILE" "${GETHUB_BIN_DIR}/${GETHUB_TARGET_NAME}" \
 chmod +x "${GETHUB_BIN_DIR}/${GETHUB_TARGET_NAME}"
 
 rm "$GETHUB_TMP_EXECUTABLE_FILE" "$GETHUB_TMP_ENVIRONMENT_FILE" \
-	|| printf " ${UNICODE_VERTICAL_PIPE} Failed to purge temporary files. Perhaps they were removed already?\n"
+	|| printf " ${UNICODE_VERTICAL_PIPE} Failed to purge temporary files. Perhaps they were already removed?\n"
 
 printf "\n \033[1;32mOK\033[0m\n\n"
