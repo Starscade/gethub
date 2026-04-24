@@ -10,12 +10,14 @@ GETHUB_REPO_NAME=Starscade/gethub
 GETHUB_TMP_BASENAME="/tmp/gethub-$(date +%s)"
 GETHUB_TMP_ENVIRONMENT_FILE="${GETHUB_TMP_BASENAME}.env"
 GETHUB_TMP_EXECUTABLE_FILE="${GETHUB_TMP_BASENAME}.bin"
+GETHUB_VERSION='v0.1.0'
 
 if test -n "$1"; then
 	GETHUB_REPO_NAME="$1"
 fi
 
 printf "\n"
+printf "  \033[1;93mGETHUB\033[0m: ${GETHUB_VERSION}\n"
 printf " \033[1;93mPACKAGE\033[0m: ${GETHUB_REPO_NAME}\n\n"
 printf " ┃ Fetching remote environment ...\n"
 
