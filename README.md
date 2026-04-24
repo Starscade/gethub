@@ -8,7 +8,7 @@ GEThub is a dead simple, zero-dependency installer for remote GitHub executables
 
 Either clone this repository and run `./install.sh`, or install the GEThub script directly via:
 ```
-curl -fLsS 'https://raw.githubusercontent.com/Starscade/gethub/main/gethub.sh' > ~/.local/bin/gethub && chmod +x ~/.local/bin/gethub
+wget -qO ~/.local/bin/gethub 'https://raw.githubusercontent.com/Starscade/gethub/main/gethub.sh' && chmod +x ~/.local/bin/gethub
 ```
 
 ---
