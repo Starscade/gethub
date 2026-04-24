@@ -17,9 +17,10 @@ _GETHUB_TMP_EXECUTABLE_FILE="${_GETHUB_TMP_BASENAME}.bin"
 : "${GETHUB_TMP_EXECUTABLE_FILE:=${_GETHUB_TMP_EXECUTABLE_FILE}}"
 
 GETHUB_VERSION='v0.1.0'
+PRINTF_ELLIPSIS='\033[37m...\033[0m'
 PRINTF_ERR='\n \033[1;31mERR\033[0m\n\n'
 PRINTF_OK='\n \033[1;32mOK\033[0m\n\n'
-UNICODE_VERTICAL_PIPE='\342\224\203'
+PRINTF_PIPE='\342\224\203'
 
 if test -n "$1"; then
 	GETHUB_REPO_NAME="$1"
@@ -28,35 +29,35 @@ fi
 printf "\n"
 printf "     \033[1;93mGETHUB\033[0m: ${GETHUB_VERSION}\n"
 printf " \033[1;93mREPOSITORY\033[0m: ${GETHUB_REPO_NAME}\n\n"
-printf " ${UNICODE_VERTICAL_PIPE} Fetching remote environment ...\n"
+printf " ${PRINTF_PIPE} Fetching remote environment ${PRINTF_ELLIPSIS}\n"
 
 curl -fLsS \
 	"https://${GETHUB_REPO_HOST}/${GETHUB_REPO_NAME}/${GETHUB_REPO_BRANCH}/${GETHUB_REPO_ENV}" \
 	> "$GETHUB_TMP_ENVIRONMENT_FILE" \
 	|| {
-		printf " ${UNICODE_VERTICAL_PIPE} Couldn't find a valid GEThub environment.\n"
+		printf " ${PRINTF_PIPE} Couldn't find a valid GEThub environment.\n"
 		printf "$PRINTF_ERR"
 		exit 1
 	}
 
 export $(grep '^GETHUB_' "$GETHUB_TMP_ENVIRONMENT_FILE" | xargs)
 
-printf " ${UNICODE_VERTICAL_PIPE} Downloading executable ...\n"
+printf " ${PRINTF_PIPE} Downloading executable ${PRINTF_ELLIPSIS}\n"
 
 curl -fLsS \
 	"$GETHUB_APP_URL" \
 	> "$GETHUB_TMP_EXECUTABLE_FILE" \
 	|| {
-		printf " ${UNICODE_VERTICAL_PIPE} Couldn't find the specified source distributable.\n"
+		printf " ${PRINTF_PIPE} Couldn't find the specified source distributable.\n"
 		printf "$PRINTF_ERR"
 		exit 1
 	}
 
-printf " ${UNICODE_VERTICAL_PIPE} Installing ...\n"
+printf " ${PRINTF_PIPE} Installing ${PRINTF_ELLIPSIS}\n"
 
 \cp -f "$GETHUB_TMP_EXECUTABLE_FILE" "${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}" \
 	|| {
-		printf " ${UNICODE_VERTICAL_PIPE} Failed to install.\n"
+		printf " ${PRINTF_PIPE} Failed to install.\n"
 		printf "$PRINTF_ERR"
 		exit 1
 	}
@@ -64,6 +65,6 @@ printf " ${UNICODE_VERTICAL_PIPE} Installing ...\n"
 chmod +x "${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}"
 
 rm "$GETHUB_TMP_EXECUTABLE_FILE" "$GETHUB_TMP_ENVIRONMENT_FILE" \
-	|| printf " ${UNICODE_VERTICAL_PIPE} Failed to purge temporary files. Perhaps they were already removed?\n"
+	|| printf " ${PRINTF_PIPE} Failed to purge temporary files. Perhaps they were already removed?\n"
 
 printf "$PRINTF_OK"
