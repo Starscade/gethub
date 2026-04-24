@@ -25,7 +25,7 @@ printf " ${UNICODE_VERTICAL_PIPE} Fetching remote environment ...\n"
 
 curl -fLsS \
 	"https://${GETHUB_REPO_HOST}/${GETHUB_REPO_NAME}/${GETHUB_REPO_BRANCH}/${GETHUB_REPO_ENV}" \
-	> "$GETHUB_TMP_EXECUTABLE_FILE" \
+	> "$GETHUB_TMP_ENVIRONMENT_FILE" \
 	|| {
 		printf " ${UNICODE_VERTICAL_PIPE} Couldn't find a valid GEThub environment.\n"
 		printf "\n \033[1;31mERR\033[0m\n\n"
