@@ -42,6 +42,15 @@ curl -fLsS \
 
 export $(grep '^GETHUB_' "$GETHUB_TMP_ENVIRONMENT_FILE" | xargs)
 
+if test -n "$2" && test "$2" = 'X'; then
+	rm "${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}" || {
+		printf "$PRINTF_ERR"
+		exit 1
+	}
+	printf "$PRINTF_OK"
+	exit
+fi
+
 printf " ${PRINTF_PIPE} Downloading executable ${PRINTF_ELLIPSIS}\n"
 
 curl -fLsS \
