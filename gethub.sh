@@ -26,7 +26,7 @@ wget -qO \
 	"https://${GETHUB_REPO_HOST}/${GETHUB_REPO_NAME}/${GETHUB_REPO_BRANCH}/${GETHUB_REPO_ENV}" \
 	|| {
 		printf " ┃ Couldn't find a valid GEThub environment.\n"
-		printf "\n \033[1;31mFAILED\033[0m\n\n"
+		printf "\n \033[1;31mERR\033[0m\n\n"
 		exit 1
 	}
 
@@ -39,7 +39,7 @@ wget -qO \
 	"https://${GETHUB_REPO_HOST}/${GETHUB_REPO_NAME}/${GETHUB_REPO_BRANCH}/${GETHUB_SOURCE_PATH}" \
 	|| {
 		printf " ┃ Couldn't find the specified source distributable.\n"
-		printf "\n \033[1;31mFAILED\033[0m\n\n"
+		printf "\n \033[1;31mERR\033[0m\n\n"
 		exit 1
 	}
 
