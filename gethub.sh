@@ -48,7 +48,11 @@ curl -fLsS \
 printf " ${UNICODE_VERTICAL_PIPE} Installing ...\n"
 
 \cp -f "$GETHUB_TMP_EXECUTABLE_FILE" "${GETHUB_BIN_DIR}/${GETHUB_TARGET_NAME}" \
-	|| printf " ${UNICODE_VERTICAL_PIPE} Failed to install.\n"
+	|| {
+		printf " ${UNICODE_VERTICAL_PIPE} Failed to install.\n"
+		printf "\n \033[1;31mERR\033[0m\n\n"
+		exit 1
+	}
 
 chmod +x "${GETHUB_BIN_DIR}/${GETHUB_TARGET_NAME}"
 
