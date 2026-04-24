@@ -47,7 +47,7 @@ wget -qO \
 
 printf " ${UNICODE_VERTICAL_PIPE} Installing ...\n"
 
-cp "$GETHUB_TMP_EXECUTABLE_FILE" "${GETHUB_BIN_DIR}/${GETHUB_TARGET_NAME}" \
+\cp -f "$GETHUB_TMP_EXECUTABLE_FILE" "${GETHUB_BIN_DIR}/${GETHUB_TARGET_NAME}" \
 	|| printf " ${UNICODE_VERTICAL_PIPE} Failed to install.\n"
 
 chmod +x "${GETHUB_BIN_DIR}/${GETHUB_TARGET_NAME}"
