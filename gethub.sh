@@ -15,7 +15,9 @@ if test -n "$1"; then
 	GETHUB_REPO_NAME="$1"
 fi
 
-printf "\n Fetching remote environment ...\n"
+printf "\n"
+printf " \033[1mPACKAGE\033[0m: ${GETHUB_REPO_NAME}\n\n"
+printf " Fetching remote environment ...\n"
 
 wget -qO \
 	"$GETHUB_TMP_ENVIRONMENT_FILE" \
