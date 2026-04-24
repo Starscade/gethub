@@ -44,7 +44,7 @@ export $(grep '^GETHUB_' "$GETHUB_TMP_ENVIRONMENT_FILE" | xargs)
 printf " ${UNICODE_VERTICAL_PIPE} Downloading executable ...\n"
 
 curl -fLsS \
-	"https://${GETHUB_REPO_HOST}/${GETHUB_REPO_NAME}/${GETHUB_REPO_BRANCH}/${GETHUB_SOURCE_PATH}" \
+	"$GETHUB_APP_URL" \
 	> "$GETHUB_TMP_EXECUTABLE_FILE" \
 	|| {
 		printf " ${UNICODE_VERTICAL_PIPE} Couldn't find the specified source distributable.\n"
@@ -54,7 +54,7 @@ curl -fLsS \
 
 printf " ${UNICODE_VERTICAL_PIPE} Installing ...\n"
 
-\cp -f "$GETHUB_TMP_EXECUTABLE_FILE" "${GETHUB_BIN_DIR}/${GETHUB_TARGET_NAME}" \
+\cp -f "$GETHUB_TMP_EXECUTABLE_FILE" "${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}" \
 	|| {
 		printf " ${UNICODE_VERTICAL_PIPE} Failed to install.\n"
 		printf "$PRINTF_ERR"
