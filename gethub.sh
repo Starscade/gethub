@@ -16,7 +16,7 @@ if test -n "$1"; then
 fi
 
 printf "\n"
-printf " \033[1mPACKAGE\033[0m: ${GETHUB_REPO_NAME}\n\n"
+printf " \033[1;93mPACKAGE\033[0m: ${GETHUB_REPO_NAME}\n\n"
 printf " Fetching remote environment ...\n"
 
 wget -qO \
