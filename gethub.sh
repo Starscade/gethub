@@ -39,4 +39,4 @@ chmod +x "${GETHUB_BIN_DIR}/${GETHUB_TARGET_NAME}"
 
 rm "$GETHUB_TMP_EXECUTABLE_FILE" "$GETHUB_TMP_ENVIRONMENT_FILE"
 
-printf "\n Done!\n\n"
+printf "\n \033[1;32mOK\033[0m\n\n"
