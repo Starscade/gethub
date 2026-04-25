@@ -28,7 +28,9 @@ fi
 
 printf "\n"
 printf "     \033[1;93mGETHUB\033[0m: ${GETHUB_VERSION}\n"
-printf " \033[1;93mREPOSITORY\033[0m: ${GETHUB_REPO_NAME}\n\n"
+printf " \033[1;93mREPOSITORY\033[0m: ${GETHUB_REPO_NAME}\n"
+printf "     \033[1;93mBRANCH\033[0m: ${GETHUB_REPO_BRANCH}\n"
+printf "\n"
 printf " ${PRINTF_PIPE} Fetching remote environment ${PRINTF_ELLIPSIS}\n"
 
 curl -fLsS \
