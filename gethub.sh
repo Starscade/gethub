@@ -45,6 +45,7 @@ curl -fLsS \
 export $(grep '^GETHUB_' "$GETHUB_TMP_ENVIRONMENT_FILE" | xargs)
 
 if test -n "$2" && test "$2" = 'X'; then
+	printf " ${PRINTF_PIPE} Uninstalling ${PRINTF_ELLIPSIS}\n"
 	rm "${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}" || {
 		printf "$PRINTF_ERR"
 		exit 1
