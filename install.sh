@@ -1,10 +1,12 @@
 #!/bin/sh
 
-command -v curl > /dev/null 2>&1 \
-	|| {
-		printf " Cannot find \033[1mcurl\033[0m. Exiting ...\n" \
-		&& exit 1
-	}
+check_command() {
+	command -v "$1" > /dev/null 2>&1 \
+		|| {
+			printf " Cannot find \033[1m${1}\033[0m. Exiting ...\n" \
+			&& exit 1
+		}
+}
 
 print_line() {
 	CLEAR_LINE="\r\033[K\033[1A\033[K"
@@ -32,6 +34,9 @@ _GETHUB_TMP_EXECUTABLE_FILE="${_GETHUB_TMP_BASENAME}.bin"
 
 PRINTF_ERR="\033[1;31mERR\033[0m"
 PRINTF_OK="\033[1;32mOK\033[0m"
+
+check_command curl
+check_command sha256sum
 
 if test -n "$1"; then
 	GETHUB_REPO_NAME="$1"
