@@ -61,10 +61,7 @@ export $(grep '^GETHUB_' "$GETHUB_TMP_ENVIRONMENT_FILE" | xargs)
 
 if test -n "$2" && test "$2" = 'X'; then
 	print_line "Uninstalling ..."
-	rm "${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}" || {
-		print_line "$PRINTF_ERR"
-		exit 1
-	}
+	rm -f "${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}"
 	print_line "$PRINTF_OK"
 	exit
 fi
