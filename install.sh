@@ -79,7 +79,7 @@ curl -fLsS \
 		exit 1
 	}
 
-print_line "Installing"
+print_line "Installing ..."
 
 \cp -f "$GETHUB_TMP_EXECUTABLE_FILE" "${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}" \
 	|| {
