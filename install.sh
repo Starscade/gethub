@@ -40,6 +40,7 @@ fi
 trap reveal_cursor EXIT INT TERM
 
 printf "\n\n\033[?25l"
+mkdir -p ~/.local/bin
 
 print_line "Fetching environment ..."
 
