@@ -18,6 +18,8 @@ reveal_cursor() {
 	exit
 }
 
+alias curls='curl -fLsS'
+
 _GETHUB_BIN_DIR=~/.local/bin
 _GETHUB_TMP_BASENAME="/tmp/gethub-$(date +%s)"
 _GETHUB_TMP_ENVIRONMENT_FILE="${_GETHUB_TMP_BASENAME}.env"
@@ -49,7 +51,7 @@ mkdir -p ~/.local/bin
 
 print_line "Fetching environment ..."
 
-curl -fLsS \
+curls \
 	"https://${GETHUB_REPO_HOST}/${GETHUB_REPO_NAME}/${GETHUB_REPO_BRANCH}/${GETHUB_REPO_ENV}" \
 	> "$GETHUB_TMP_ENVIRONMENT_FILE" \
 	|| {
@@ -79,7 +81,7 @@ fi
 
 print_line "Downloading executable ..."
 
-curl -fLsS \
+curls \
 	"$GETHUB_APP_URL" \
 	> "$GETHUB_TMP_EXECUTABLE_FILE" \
 	|| {
