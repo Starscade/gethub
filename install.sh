@@ -18,7 +18,7 @@ reveal_cursor() {
 	exit
 }
 
-alias curls='curl -fLsS'
+alias curls='curl -fLs'
 
 _GETHUB_BIN_DIR=~/.local/bin
 _GETHUB_TMP_BASENAME="/tmp/gethub-$(date +%s)"
@@ -86,7 +86,7 @@ curls \
 	> "$GETHUB_TMP_EXECUTABLE_FILE" \
 	|| {
 		print_line "Couldn't find the specified source distributable."
-		exit
+		exit 1
 	}
 
 print_line "Installing ..."
