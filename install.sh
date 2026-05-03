@@ -59,10 +59,21 @@ curl -fLsS \
 
 export $(grep '^GETHUB_' "$GETHUB_TMP_ENVIRONMENT_FILE" | xargs)
 
-if test -n "$2" && test "$2" = 'X'; then
-	print_line "Uninstalling ..."
-	rm -f "${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}"
-	print_line "$PRINTF_OK"
+if test -n "$2"; then
+	case "$2" in
+		'?')
+			print_line '?'
+			;;
+		'X')
+			print_line "Uninstalling ..."
+			rm -f "${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}"
+			print_line "$PRINTF_OK"
+			;;
+		*)
+			print_line "\"${2}\" not recognized."
+			exit 1
+			;;
+	esac
 	exit
 fi
 
