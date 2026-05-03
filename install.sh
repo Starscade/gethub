@@ -86,7 +86,7 @@ curls \
 	> "$GETHUB_TMP_EXECUTABLE_FILE" \
 	|| {
 		print_line "Couldn't find the specified source distributable."
-		exit 1
+		exit
 	}
 
 print_line "Installing ..."
