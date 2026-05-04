@@ -1,11 +1,27 @@
 #!/bin/sh
 
+alias curls='curl -fLs'
+
 check_command() {
 	command -v "$1" > /dev/null 2>&1 \
 		|| {
 			printf " Cannot find \033[1m${1}\033[0m. Exiting ...\n" \
 			&& exit 1
 		}
+}
+
+get_env() {
+	print_line "Fetching environment ..."
+
+	curls \
+		"https://${GETHUB_REPO_HOST}/${GETHUB_REPO_NAME}/${GETHUB_REPO_BRANCH}/${GETHUB_REPO_ENV}" \
+		> "$GETHUB_TMP_ENVIRONMENT_FILE" \
+		|| {
+			print_line "Couldn't find a valid GEThub environment. Exiting ..."
+			exit 1
+		}
+
+	export $(grep '^GETHUB_' "$GETHUB_TMP_ENVIRONMENT_FILE" | xargs)
 }
 
 print_line() {
@@ -17,8 +33,6 @@ reveal_cursor() {
 	printf "\033[?25h\n"
 	exit
 }
-
-alias curls='curl -fLs'
 
 _GETHUB_BIN_DIR=~/.local/bin
 _GETHUB_TMP_BASENAME="/tmp/gethub-$(date +%s)"
