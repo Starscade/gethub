@@ -54,44 +54,38 @@ PRINTF_OK="\033[1;32mOK\033[0m"
 check_command curl
 check_command sha256sum
 
-if test -n "$1"; then
-	GETHUB_REPO_NAME="$1"
+if test -z "$1"; then
+	exit 1
+fi
+
+if test -n "$2"; then
+	GETHUB_REPO_NAME="$2"
 fi
 
 trap reveal_cursor EXIT INT TERM
 
 printf "\n\n\033[?25l"
-mkdir -p ~/.local/bin
 
-print_line "Fetching environment ..."
-
-curls \
-	"https://${GETHUB_REPO_HOST}/${GETHUB_REPO_NAME}/${GETHUB_REPO_BRANCH}/${GETHUB_REPO_ENV}" \
-	> "$GETHUB_TMP_ENVIRONMENT_FILE" \
-	|| {
-		print_line "Couldn't find a valid GEThub environment. Exiting ..."
+case "$1" in
+	'help')
+		print_line '?'
+		exit
+		;;
+	'install')
+		get_env
+		;;
+	'rm')
+		get_env
+		print_line "Uninstalling ..."
+		rm -f "${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}"
+		print_line "$PRINTF_OK"
+		exit
+		;;
+	*)
+		print_line "\"${1}\" not recognized."
 		exit 1
-	}
-
-export $(grep '^GETHUB_' "$GETHUB_TMP_ENVIRONMENT_FILE" | xargs)
-
-if test -n "$2"; then
-	case "$2" in
-		'?')
-			print_line '?'
-			;;
-		'X')
-			print_line "Uninstalling ..."
-			rm -f "${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}"
-			print_line "$PRINTF_OK"
-			;;
-		*)
-			print_line "\"${2}\" not recognized."
-			exit 1
-			;;
-	esac
-	exit
-fi
+		;;
+esac
 
 print_line "Downloading executable ..."
 
