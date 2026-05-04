@@ -99,13 +99,13 @@ curls \
 
 print_line "Installing ..."
 
-\cp -f "$GETHUB_TMP_EXECUTABLE_FILE" "${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}" \
+\install -Dm 755 \
+	"$GETHUB_TMP_EXECUTABLE_FILE" \
+	"${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}" \
 	|| {
 		print_line "Failed to install."
 		exit 1
 	}
-
-chmod +x "${GETHUB_BIN_DIR}/${GETHUB_APP_NAME}"
 
 rm "$GETHUB_TMP_EXECUTABLE_FILE" "$GETHUB_TMP_ENVIRONMENT_FILE" \
 	|| print_line "Failed to purge temporary files. Perhaps they were already removed?"
