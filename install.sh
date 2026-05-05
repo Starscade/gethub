@@ -107,7 +107,7 @@ print_line "Installing ..."
 		exit 1
 	}
 
-rm "$GETHUB_TMP_EXECUTABLE_FILE" "$GETHUB_TMP_ENVIRONMENT_FILE" \
+\rm "$GETHUB_TMP_EXECUTABLE_FILE" "$GETHUB_TMP_ENVIRONMENT_FILE" \
 	|| print_line "Failed to purge temporary files. Perhaps they were already removed?"
 
 print_line "$PRINTF_OK"
